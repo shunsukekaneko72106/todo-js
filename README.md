@@ -1,2 +1,3 @@
 # test_codesandbox
-Created with CodeSandbox
+
+・todo アプリを javascript のみで作成する
