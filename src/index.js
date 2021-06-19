@@ -18,16 +18,40 @@ const onClickAdd = () => {
   const completeButton = document.createElement("button");
   completeButton.innerText = "完了";
   completeButton.addEventListener("click", () => {
-    alert("完了");
+    //押された削除ボタンの親タグ（div）を未完了リストから削除
+    deleteIncompletelist(deleteButton.parentNode);
+
+    //完了リストに追加する要素
+    const addTaget = completeButton.parentNode;
+
+    //ToDo内容テキストを取得
+    const text = addTaget.firstElementChild.innerText;
+
+    //div以下を初期化
+    addTaget.textContent = null;
+
+    //liタグを生成
+    const li = document.createElement("li");
+    li.innerText = text;
+
+    //button（完了）タグ生成
+    const backButton = document.createElement("button");
+    backButton.innerText = "戻す";
+
+    //divタグの子要素に各要素を設定
+    addTaget.appendChild(li);
+    addTaget.appendChild(backButton);
+
+    //完了リストに追加
+    document.getElementById("complete-list").appendChild(addTaget);
   });
 
   //button(削除)タグ生成
   const deleteButton = document.createElement("button");
   deleteButton.innerText = "削除";
   deleteButton.addEventListener("click", () => {
-    //押された削除ボタンの親タグ（div）を未完了リストから削除
-    const deleteTaget = deleteButton.parentNode;
-    document.getElementById("incomplete-list").removeChild(deleteTaget);
+    //押された完了ボタンの親タグ（div）を未完了リストから削除
+    deleteIncompletelist(deleteButton.parentNode);
   });
 
   //divタグの子要素に各要素を設定
@@ -37,6 +61,11 @@ const onClickAdd = () => {
 
   //未完了リストに追加
   document.getElementById("incomplete-list").appendChild(div);
+};
+
+//未完了リストから指定の要素を削除
+const deleteIncompletelist = (taget) => {
+  document.getElementById("incomplete-list").removeChild(taget);
 };
 
 document
