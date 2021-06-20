@@ -37,6 +37,14 @@ const onClickAdd = () => {
     //button（完了）タグ生成
     const backButton = document.createElement("button");
     backButton.innerText = "戻す";
+    backButton.addEventListener("click", () => {
+      //押された完了ボタンの親タグ（div）を完了タスクから削除
+      const daleteTaget = backButton.parentNode;
+      document.getElementById("complete-list").removeChild(daleteTaget);
+
+      //テキストを取得
+      const text = backButton.parentNode.firstChild.innerText;
+    });
 
     //divタグの子要素に各要素を設定
     addTaget.appendChild(li);
